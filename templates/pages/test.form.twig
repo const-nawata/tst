@@ -1,0 +1,35 @@
+{% extends 'layouts/base.twig' %}
+{% block title %}Test form{% endblock %}
+
+{% block body %}
+<h2>Test form</h2>
+
+
+{{ form_start(userForm) }}
+
+
+
+
+	<button type="submit">Submit</button>
+{{ form_end(userForm) }}
+
+
+{% endblock %}
+
+
+
+{% block javascripts %}
+<script type="text/javascript">
+
+/*
+
+$(document).ready(function(){
+	$("#show_modal").click(function(){
+		alert("Show modal");
+	});
+});
+
+*/
+
+</script>
+{% endblock %}
