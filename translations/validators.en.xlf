@@ -7,8 +7,14 @@
         <body>
             <trans-unit id="author.name.not_blank">
                 <source>author.name.not_blank</source>
-                <target>Please enter an author name.</target>
+                <target>Please enter an author name UUU.</target>
             </trans-unit>
+
+            <trans-unit id="author.name.uniq">
+                <source>author.name.uniq</source>
+                <target>Name is uniqaaaaaqqqqq.</target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

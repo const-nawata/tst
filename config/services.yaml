@@ -27,3 +27,12 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+
+    Monolog\Formatter\LineFormatter:
+#        arguments: ["\n%%channel%%.%%level_name%% *** [%%datetime%%] *** %%context.dir%%\n%%message%\n", "d-m-Y H:i:s.v", true, true]   #This line was left as an example of alternative arguments definitions
+        arguments:
+            $format: "\n%%channel%%.%%level_name%% *** [%%datetime%%] *** %%context.dir%%\n%%message%\n"
+            $dateFormat: "d-m-Y H:i:s.v"
+            $allowInlineLineBreaks: true
+            $ignoreEmptyContextAndExtra: true

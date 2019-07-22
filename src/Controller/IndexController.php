@@ -27,55 +27,46 @@ class IndexController extends ControllerCore
 	{
 		return $this->show($request,'pages/index.twig');
 	}
-//______________________________________________________________________________
+//______________________________________________________________________________ try.tst/testform
 
 /**
+ *
  * @Route("/testform", name="testform")
  * @param Request $request,
  * @return Response
  */
-	public function testform(Request $request):Response
+	public function testForm(Request $request):Response
 	{
 
 
 
 //		return $this->show($request,'pages/test.form.twig');
 
+		$post	= $request->request->get('test_form');
+
+
+//$this->logger->info(print_r( $post ,1),[__FILE__]);
 
 		$user = new Author();
 		$form = $this->createForm(TestForm::class, $user, []);
 		$form->handleRequest($request);
 
 		$errs = '';
-/*
+
 		if ($form->isSubmitted() && $form->isValid()) {
-			$user->setPassword(
-				$passwordEncoder->encodePassword(
-					$user,
-					$form->get('plainPassword')->getData()
-				)
-			);
 
-			$user->setConfirmed(false);
+			$user->setName($post['name']);
 
-//			$user->setRoles(['ADMIN']);
-			$user->setRoles(['USER']);
 
-			$entityManager = $this->getDoctrine()->getManager();
-			$entityManager->persist($user);
-			$entityManager->flush();
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($user);
+			$em->flush();
 
-			return $guardHandler->authenticateUserAndHandleSuccess(
-				$user,
-				$request,
-				$authenticator,
-				'main'
-			);
 		}else{
 			list($errs, $error_field)	= $this->getFormError( $form );
 		}
 
-
+//$this->logger->info("$errs",[__FILE__]);
 /*      */
 
 		return $this->show($request, 'pages/test.form.twig', [ 'userForm' => $form->createView() ]);
