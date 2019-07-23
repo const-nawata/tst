@@ -10,7 +10,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity(repositoryClass="App\Repository\AuthorRepository")
  * @UniqueEntity(
  *     fields={"name"},
- *     message="author.name.uniq"
+ *     message="entity.field.unique"
  * )
  */
 class Author
@@ -24,7 +24,7 @@ class Author
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-	 * @Assert\NotBlank(message="author.name.not_blank")
+	 * @Assert\NotBlank(message="entity.field.not_blank")
      */
     private $name;
 
