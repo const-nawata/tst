@@ -6,6 +6,7 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 //	Annotations
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 use App\Entity\Author;
@@ -37,15 +38,7 @@ class IndexController extends ControllerCore
  */
 	public function testForm(Request $request):Response
 	{
-
-
-
-//		return $this->show($request,'pages/test.form.twig');
-
 		$post	= $request->request->get('test_form');
-
-
-//$this->logger->info(print_r( $post ,1),[__FILE__]);
 
 		$user = new Author();
 		$form = $this->createForm(TestForm::class, $user, []);
@@ -65,14 +58,19 @@ class IndexController extends ControllerCore
 		}else{
 			list($errs, $error_field)	= $this->getFormError( $form );
 		}
-
-//$this->logger->info("$errs",[__FILE__]);
-/*      */
-
 		return $this->show($request, 'pages/test.form.twig', [ 'userForm' => $form->createView() ]);
+	}
+//______________________________________________________________________________
 
-
-
+/**
+ *
+ * @Route("/getjson", name="getjson")
+ * @param Request $request,
+ * @return JsonResponse
+ */
+	public function testJson(Request $request):JsonResponse
+	{
+		return new JsonResponse([ 'success'	=> true, 'count' => 10 ]);
 	}
 //______________________________________________________________________________
 
