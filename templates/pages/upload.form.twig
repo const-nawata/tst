@@ -1,0 +1,43 @@
+{% extends 'layouts/base.twig' %}
+{% block title %}Test form{% endblock %}
+
+{% block body %}
+<h2>Upload form</h2>
+
+<form id="myform" method="post" enctype="multipart/form-data">
+  <input type="file" name="upload" />
+  <button type="button" id="send_file">Send</button>
+</form>
+
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript">
+$(document).ready(function(){
+
+var uform = document.getElementById("myform");
+
+	$("#send_file").click(function(event){
+		$.ajax({
+			url:"{{ path('uploadfile') }}",
+			data: new FormData(uform),// the formData function is available in almost all new browsers.
+			type:"post",
+			contentType:false,
+			processData:false,
+			cache:false,
+			dataType:"json", // Change this according to your response from the server.
+			error:function(err){
+				console.error(err);
+			},
+			success:function(data){
+				console.log(data);
+			},
+			complete:function(){
+				console.log("Request finished.");
+			}
+		});
+	});
+
+});
+</script>
+{% endblock %}

@@ -29,6 +29,10 @@ class Kernel extends BaseKernel
     {
         return \dirname(__DIR__);
     }
+    public function getLogDir()
+    {
+        return $this->getProjectDir().'/var/logs';
+    }
 
     protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader): void
     {
